@@ -8,7 +8,11 @@ public class Rule110Print {
     private static int arrayLength;
     private static char totalArray[][];
 
-
+    /***
+     * This runs the program and starts with the entire output to the terminal!
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
 
         System.out.println("Hi, welcome to the Rule of 101 simulation");
@@ -20,21 +24,56 @@ public class Rule110Print {
         System.out.println("Next to do is to see how many generations you would like to run... How many generations would you like to run?");
         arrayLength = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Here is your final Rule 101 Pyramid!");
-        totalArray = new char[initalString.length() + ((arrayLength*2)+1)][arrayLength + 1];
+        System.out.println("\n\nHere is your final Rule 101 Pyramid!");
+        totalArray = new char[arrayLength][initalString.length() + ((arrayLength*2))];
+
+        totalArray = Rule110Logic.makePyramid(totalArray);
+
+        printCharPyramid(totalArray);
 
         closeScanner();
 
     }
 
-    public String getInitalString() {
+
+    /********
+     * This is a double for-each loop that prints out the Char Pyramid!
+     */
+    public static void printCharPyramid(char[][] Pyramid) {
+
+        for (char[] row : Pyramid) {
+            for (char k : row) {
+                System.out.print(k);
+            }
+            
+            System.out.println();
+        }
+        
+    }
+
+    /*******
+     * Getter for Inital values
+     * 
+     * @return
+     */
+    public static String getInitalString() {
         return initalString;
     }
 
-    public char[][] getBoard() {
+
+    /**************
+     * Getter for the total board
+     * 
+     * 
+     * @return
+     */
+    public static char[][] getBoard() {
         return totalArray;
     }
     
+    /*************
+     * Closes Scanner for me
+     */
     private static void closeScanner() {
         scanner.close();
     }
