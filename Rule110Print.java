@@ -15,23 +15,59 @@ public class Rule110Print {
      */
     public static void main(String[] args) {
 
-        System.out.println("Hi, welcome to the Rule of 101 simulation");
-        System.out.println("The rule of 101 is a Turing Complete Automatum which decides if the value is a 0 or 1 based on the previous function");
+        boolean done = false;
 
-        System.out.println("\n\nFirst, to run this program, lets start off with your intial string... what would you like to be your intial string");
-        initalString = scanner.nextLine();
+        while(!done) {
+                
+            System.out.println(
+                "\nWelcome to the Rule 110 Cellular Automaton Simulation!\n" +
+                "Created by Jayden Viene"
+            );
+            
+            System.out.println(
+                "Rule 110 is a one-dimensional cellular automaton known for its simple rules\n" +
+                "yet surprisingly complex behavior. Despite having just a few logical cases,\n" +
+                "it is Turing complete—capable of performing any computation given the right setup.\n" +
+                "Each cell updates to 0 or 1 based on its own value and the values of its two neighbors."
+            );
+            
+            System.out.println(
+                "\n\nLet's begin by setting up your Rule 110 simulation.\n" +
+                "Please enter the initial binary string (e.g., 1, 101, 1101) to start with:"
+            );
 
-        System.out.println("Next to do is to see how many generations you would like to run... How many generations would you like to run?");
-        arrayLength = Integer.parseInt(scanner.nextLine());
+            initalString = scanner.nextLine();
 
-        System.out.println("\n\nHere is your final Rule 101 Pyramid!");
-        totalArray = new char[arrayLength][initalString.length() + ((arrayLength*2))];
+            System.out.println(
+                "\nNext, let's decide how many generations you want the simulation to run.\n" +
+                "How many generations would you like to run?"
+            );
+            
+            System.out.println(
+                "Tip: For best results, keep the number below ~80 to avoid formatting issues\n" +
+                "in smaller terminal windows."
+            );
 
-        totalArray = Rule110Logic.makePyramid(totalArray);
+            arrayLength = Integer.parseInt(scanner.nextLine());
 
-        printCharPyramid(totalArray);
+            System.out.println("\n\nHere is your final Rule 101 Pyramid!");
+            totalArray = new char[arrayLength + 1][initalString.length() + ((arrayLength*2))];
 
-        closeScanner();
+            totalArray = Rule110Logic.makePyramid(totalArray);
+
+            printCharPyramid(totalArray);
+
+            System.out.println("\n\n\n\n Here is your Pyramid! Would you like to run this program again or quit...");
+            System.out.println("Type in q to quit, anything else to continue!");
+
+            String s = scanner.nextLine();
+
+            if(s.equals("q")) {
+                done = true;
+
+                closeScanner();
+            }
+        }
 
     }
 
@@ -49,6 +85,15 @@ public class Rule110Print {
             System.out.println();
         }
         
+    }
+
+    /*******
+     * Getter for # of Rows
+     * 
+     * @return
+     */
+    public static int getRows() {
+        return arrayLength;
     }
 
     /*******
