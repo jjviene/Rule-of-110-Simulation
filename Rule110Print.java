@@ -1,5 +1,16 @@
 import java.util.Scanner;
 
+/*******************
+ * 
+ * Jayden Viene
+ * 
+ * CSE 355 - EC Project
+ * 
+ * Rule110Print Class
+ * 
+ * This class is the front-end part of the program. This deals with the User-Interface through terminal and the scanner class.
+ * It deals with having the user get asked questions, then uses the back-end to actually run the simulation
+ */
 public class Rule110Print {
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -18,19 +29,24 @@ public class Rule110Print {
         boolean done = false;
 
         while(!done) {
-                
+            
+            //Inital Intro
             System.out.println(
                 "\nWelcome to the Rule 110 Cellular Automaton Simulation!\n" +
                 "Created by Jayden Viene"
             );
             
+            //Quick Explanation of the rule of 110.
             System.out.println(
                 "Rule 110 is a one-dimensional cellular automaton known for its simple rules\n" +
-                "yet surprisingly complex behavior. Despite having just a few logical cases,\n" +
-                "it is Turing complete—capable of performing any computation given the right setup.\n" +
-                "Each cell updates to 0 or 1 based on its own value and the values of its two neighbors."
+                "yet surprisingly complex behavior. Although it has only a few logical cases,\n" +
+                "it is Turing complete and techinically capable of performing any operation given the correct set-up.\n" +
+                "Each cell updates to 0 or 1 based on its own value and the values of its two neighbors above it.\n" +
+                "Professor Ben Amor discussed this concept in principle and a little implementation within class, however \n" +
+                "this program runs a simulation for it on a wider-scale to show the user it's completeness."
             );
             
+            //Asks uses for inital input string
             System.out.println(
                 "\n\nLet's begin by setting up your Rule 110 simulation.\n" +
                 "Please enter the initial binary string (e.g., 1, 101, 1101) to start with:"
@@ -38,6 +54,7 @@ public class Rule110Print {
 
             initalString = scanner.nextLine();
 
+            //Asks for Number of Iterations
             System.out.println(
                 "\nNext, let's decide how many generations you want the simulation to run.\n" +
                 "How many generations would you like to run?"
@@ -50,13 +67,16 @@ public class Rule110Print {
 
             arrayLength = Integer.parseInt(scanner.nextLine());
 
-            System.out.println("\n\nHere is your final Rule 101 Pyramid!");
+            System.out.println("\n\nHere is your final Rule 110 Pyramid!");
             totalArray = new char[arrayLength + 1][initalString.length() + ((arrayLength*2))];
 
+            //Creates the Char Pyramid
             totalArray = Rule110Logic.makePyramid(totalArray);
 
+            //Prints out the Char Pyramid
             printCharPyramid(totalArray);
 
+            //Shows the Pyramid and asks the user to re-run the simulation or quit
             System.out.println("\n\n\n\n Here is your Pyramid! Would you like to run this program again or quit...");
             System.out.println("Type in q to quit, anything else to continue!");
 
