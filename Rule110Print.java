@@ -36,29 +36,57 @@ public class Rule110Print {
                 "Please enter the initial binary string (e.g., 1, 101, 1101) to start with:"
             );
 
-            initalString = scanner.nextLine();
+            boolean goodString = false;
+
+            //This makes sure that the string only contains 1's and 0's!
+            while(goodString == false) {
+
+                initalString = scanner.nextLine();
+
+                if (initalString.matches("[01]+")) {
+                    goodString = true;
+                } else {
+                    System.out.println("Invalid input! Please enter a string containing only 0s and 1s.");
+                }
+            }
 
             System.out.println(
-                "\nNext, let's decide how many generations you want the simulation to run.\n" +
+                "Next, let's decide how many generations you want the simulation to run.\n" +
                 "How many generations would you like to run?"
             );
-            
+
             System.out.println(
-                "Tip: For best results, keep the number below ~80 to avoid formatting issues\n" +
+                "Tip: For best results, keep the number below ~60 to avoid formatting issues\n" +
                 "in smaller terminal windows."
             );
 
             arrayLength = Integer.parseInt(scanner.nextLine());
 
-            System.out.println("\n\nHere is your final Rule 101 Pyramid!");
             totalArray = new char[arrayLength + 1][initalString.length() + ((arrayLength*2))];
 
             totalArray = Rule110Logic.makePyramid(totalArray);
+            
+            System.out.println("");
+            
+            /*
+            for(int i = 0; i < 115; i++) {
 
+                System.out.print("#");
+
+            }
+
+            System.out.println("\nHere comes the Pyramid!\n\n");
+            */
+            
             printCharPyramid(totalArray);
+            
+            System.out.println(
+                "\n\nHere is your Rule 110 pyramid!\n" +
+                "Would you like to run the simulation again or exit?"
+            );
 
-            System.out.println("\n\n\n\n Here is your Pyramid! Would you like to run this program again or quit...");
-            System.out.println("Type in q to quit, anything else to continue!");
+            System.out.println("Type 'q' to quit, or press Enter to run again:");
+            
 
             String s = scanner.nextLine();
 
